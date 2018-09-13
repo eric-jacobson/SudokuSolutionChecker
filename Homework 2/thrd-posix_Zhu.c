@@ -20,6 +20,11 @@
 
 #define NUM_CHILD_THREADS 15
 
+typedef int bool;
+
+#define TRUE 1
+#define FALSE 0
+
 int sum[NUM_CHILD_THREADS]; /* this data is shared by the thread(s) */
 
 void *runner(void *param); /* the thread */
@@ -29,9 +34,25 @@ int upper;
 int iValue;
 } run_param;
 
+/* Global data structures */
+sudokuPuzzle[9][9];  /* Matrix to store sudoku puzzle data */
+bool rows[9];
+bool columns[9];
+bool subgrids[9];
+
+/*  Structure to represent the index (row and column) range of the elements in the puzzle */
+typedef struct{
+	int topRow;
+	int bottomRow;
+	int leftColumn;
+	int rightColumn;
+}
+
 int main(int argc, char *argv[])
 {
 	int i;
+	bool x = TRUE, y = FALSE;
+
 	pthread_t tid[NUM_CHILD_THREADS]; /* the thread identifier for child threads */
 	pthread_attr_t attr[NUM_CHILD_THREADS]; /* set of attributes for the thread */
 	run_param thrParam[NUM_CHILD_THREADS];
@@ -69,6 +90,16 @@ int main(int argc, char *argv[])
 		pthread_join(tid[i],NULL);
 	}
 
+	printf("x = %d, y = %d\n", x, y);
+	if (x == TRUE)
+		printf("x is valid, ");
+	else
+		printf("x is invalid, ");
+	if (y == TRUE)
+		printf("y is valid\n");
+	else
+		printf("y is invalid\n");
+
 	for (i = 0; i < NUM_CHILD_THREADS; i++) {
 		printf("sum[%d] = %d\n", i, sum[i]);
 	}
@@ -88,7 +119,7 @@ void *runner(void *param)
 	up = inP->upper;
 	iV = inP->iValue;
 
-	sum[iV] = 0;
+	sum[iV] = inP->iValue;
 
 	if (up > 0) {
 		for (i = 1; i <= up; i++)
