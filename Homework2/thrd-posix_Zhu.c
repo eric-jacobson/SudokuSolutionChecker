@@ -46,7 +46,7 @@ typedef struct{
 	int bottomRow;
 	int leftColumn;
 	int rightColumn;
-}
+} posIndex;
 
 int main(int argc, char *argv[])
 {
