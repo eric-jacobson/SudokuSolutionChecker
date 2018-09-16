@@ -12,6 +12,11 @@
  * @author Gagne, Galvin, Silberschatz
  * Operating System Concepts  - Tenth Edition
  * Copyright John Wiley & Sons - 2018
+ * 
+ * 
+ * Modified by Eric Jacobson
+ * 14/9/2018
+ * 
  */
 
 #include <pthread.h>
@@ -35,7 +40,7 @@ int iValue;
 } run_param;
 
 /* Global data structures */
-sudokuPuzzle[9][9];  /* Matrix to store sudoku puzzle data */
+char sudokuPuzzle[9][9];  /* Matrix to store sudoku puzzle data */
 bool rows[9];
 bool columns[9];
 bool subgrids[9];
@@ -46,12 +51,27 @@ typedef struct{
 	int bottomRow;
 	int leftColumn;
 	int rightColumn;
-} posIndex;
+} posIndex; 
 
 int main(int argc, char *argv[])
 {
 	int i;
 	bool x = TRUE, y = FALSE;
+
+	/* Get sudoku puzzle data from a text file */
+	FILE *filePtr;
+	filePtr = fopen("SudokuPuzzle.txt", "r");
+	if(filePtr == NULL) {
+		printf("Error opening file for reading.");
+	}else { 
+		printf("Sudoku Puzzle Solution:\n");
+		while(!feof(filePtr)){
+		fgets(sudokuPuzzle, 9, filePtr);
+		printf("%s", sudokuPuzzle);
+		}
+		printf("\n");
+		fclose(filePtr);
+	}	
 
 	pthread_t tid[NUM_CHILD_THREADS]; /* the thread identifier for child threads */
 	pthread_attr_t attr[NUM_CHILD_THREADS]; /* set of attributes for the thread */
@@ -76,12 +96,12 @@ int main(int argc, char *argv[])
 	}
 
 	/* get the default attributes */
-	for (i = 0; i < NUM_CHILD_THREADS; i++)
+	for (i = 0; i < NUM_CHILD_THREADS; i++) {
 		pthread_attr_init(&(attr[i]));
+	}
 
 	/* create the threads */
-	for (i = 0; i < NUM_CHILD_THREADS; i++)
-	{
+	for (i = 0; i < NUM_CHILD_THREADS; i++)	{
 		pthread_create(&(tid[i]),&(attr[i]),runner, &(thrParam[i]));
 	}
 
