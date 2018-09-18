@@ -1,0 +1,51 @@
+Sudoku Puzzle Solution:
+
+6	2	4	5	3	9	1	8	7	
+5	1	9	7	2	8	6	3	4	
+8	3	7	6	1	4	2	9	5	
+1	4	3	8	6	5	7	2	9	
+9	5	8	2	4	7	3	6	1	
+7	6	2	3	9	1	4	5	8	
+3	7	1	9	5	6	8	4	2	
+4	9	6	1	8	2	5	7	3	
+2	8	5	4	7	3	9	1	6	
+
+//---------------Validating---------------//
+
+	Column: af5f7700 valid.
+	Row: aadee700 valid.
+	Grid: a6de6700 valid.
+
+	Column: aedf6700 valid.
+	Row: aa5ed700 valid.
+	Grid: a65e5700 valid.
+
+	Column: ae5f5700 valid.
+	Row: a9dec700 valid.
+	Grid: a5de4700 valid.
+
+	Column: addf4700 valid.
+	Row: a95eb700 valid.
+	Grid: a55e3700 valid.
+
+	Column: ad5f3700 valid.
+	Row: a8dea700 valid.
+	Grid: a4de2700 valid.
+
+	Column: acdf2700 valid.
+	Row: a85e9700 valid.
+	Grid: a45e1700 valid.
+
+	Column: ac5f1700 valid.
+	Row: a7de8700 valid.
+	Grid: a3de0700 valid.
+
+	Column: abdf0700 valid.
+	Row: a75e7700 valid.
+	Grid: a35df700 valid.
+
+	Column: 0 is invalid.
+	Row: 0 invalid.
+	Grid: a2dde700 valid.
+
+	Sudoku puzzle is invalid!
