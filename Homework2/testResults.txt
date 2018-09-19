@@ -10,42 +10,70 @@ Sudoku Puzzle Solution:
 4	9	6	1	8	2	5	7	3	
 2	8	5	4	7	3	9	1	6	
 
-//---------------Validating---------------//
+732f8700 T_Row: 0, B_Row: 8, L_Col: 6, R_Col: 6 valid!
+72af7700 T_Row: 0, B_Row: 8, L_Col: 7, R_Col: 7 valid!
+73af9700 T_Row: 0, B_Row: 8, L_Col: 5, R_Col: 5 valid!
+722f6700 T_Row: 0, B_Row: 8, L_Col: 8, R_Col: 8 valid!
+71af5700 T_Row: 0, B_Row: 0, L_Col: 0, R_Col: 8 valid!
+712f4700 T_Row: 1, B_Row: 1, L_Col: 0, R_Col: 8 valid!
+742fa700 T_Row: 0, B_Row: 8, L_Col: 4, R_Col: 4 valid!
+70af3700 T_Row: 2, B_Row: 2, L_Col: 0, R_Col: 8 valid!
+702f2700 T_Row: 3, B_Row: 3, L_Col: 0, R_Col: 8 valid!
+74afb700 T_Row: 0, B_Row: 8, L_Col: 3, R_Col: 3 valid!
+6faf1700 T_Row: 4, B_Row: 4, L_Col: 0, R_Col: 8 valid!
+6f2f0700 T_Row: 5, B_Row: 5, L_Col: 0, R_Col: 8 valid!
+6eaef700 T_Row: 6, B_Row: 6, L_Col: 0, R_Col: 8 valid!
+6e2ee700 T_Row: 7, B_Row: 7, L_Col: 0, R_Col: 8 valid!
+6daed700 T_Row: 8, B_Row: 8, L_Col: 0, R_Col: 8 valid!
+6d2ec700 T_Row: 0, B_Row: 3, L_Col: 3, R_Col: 0 valid!
+752fc700 T_Row: 0, B_Row: 8, L_Col: 2, R_Col: 2 valid!
+6caeb700 T_Row: 0, B_Row: 3, L_Col: 6, R_Col: 3 valid!
+6c2ea700 T_Row: 0, B_Row: 3, L_Col: 9, R_Col: 6 valid!
+6bae9700 T_Row: 3, B_Row: 6, L_Col: 3, R_Col: 0 valid!
+6b2e8700 T_Row: 3, B_Row: 6, L_Col: 6, R_Col: 3 valid!
+69ae5700 T_Row: 6, B_Row: 9, L_Col: 6, R_Col: 3 valid!
+692e4700 T_Row: 6, B_Row: 9, L_Col: 9, R_Col: 6 valid!
+6a2e6700 T_Row: 6, B_Row: 9, L_Col: 3, R_Col: 0 valid!
+6aae7700 T_Row: 3, B_Row: 6, L_Col: 9, R_Col: 6 valid!
+75afd700 T_Row: 0, B_Row: 8, L_Col: 1, R_Col: 1 valid!
+762fe700 T_Row: 0, B_Row: 8, L_Col: 0, R_Col: 0 valid!
 
-	Column: af5f7700 valid.
-	Row: aadee700 valid.
-	Grid: a6de6700 valid.
+	RESULTS:
 
-	Column: aedf6700 valid.
-	Row: aa5ed700 valid.
-	Grid: a65e5700 valid.
+	Column:  <762fe700> is valid.
+	Row: <71af5700> is valid.
+	Grid: <6d2ec700> is valid.
 
-	Column: ae5f5700 valid.
-	Row: a9dec700 valid.
-	Grid: a5de4700 valid.
+	Column:  <75afd700> is valid.
+	Row: <712f4700> is valid.
+	Grid: <6caeb700> is valid.
 
-	Column: addf4700 valid.
-	Row: a95eb700 valid.
-	Grid: a55e3700 valid.
+	Column:  <752fc700> is valid.
+	Row: <70af3700> is valid.
+	Grid: <6c2ea700> is valid.
 
-	Column: ad5f3700 valid.
-	Row: a8dea700 valid.
-	Grid: a4de2700 valid.
+	Column:  <74afb700> is valid.
+	Row: <702f2700> is valid.
+	Grid: <6bae9700> is valid.
 
-	Column: acdf2700 valid.
-	Row: a85e9700 valid.
-	Grid: a45e1700 valid.
+	Column:  <742fa700> is valid.
+	Row: <6faf1700> is valid.
+	Grid: <6b2e8700> is valid.
 
-	Column: ac5f1700 valid.
-	Row: a7de8700 valid.
-	Grid: a3de0700 valid.
+	Column:  <73af9700> is valid.
+	Row: <6f2f0700> is valid.
+	Grid: <6aae7700> is valid.
 
-	Column: abdf0700 valid.
-	Row: a75e7700 valid.
-	Grid: a35df700 valid.
+	Column:  <732f8700> is valid.
+	Row: <6eaef700> is valid.
+	Grid: <6a2e6700> is valid.
 
-	Column: 0 is invalid.
-	Row: 0 invalid.
-	Grid: a2dde700 valid.
+	Column:  <72af7700> is valid.
+	Row: <6e2ee700> is valid.
+	Grid: <69ae5700> is valid.
 
-	Sudoku puzzle is invalid!
+	Column:  <722f6700> is valid.
+	Row: <6daed700> is valid.
+	Grid: <692e4700> is valid.
+
+	Sudoku puzzle solution is valid!

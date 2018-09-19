@@ -1,0 +1,79 @@
+Sudoku Puzzle Solution:
+
+6	2	4	5	3	9	1	8	7	
+5	1	9	7	2	8	6	3	4	
+8	3	7	6	1	4	2	9	5	
+1	4	3	8	6	5	7	2	9	
+9	5	8	2	4	7	3	6	1	
+7	6	2	3	9	1	4	5	8	
+3	7	1	9	5	6	8	4	2	
+4	9	6	1	8	2	5	7	3	
+2	8	5	4	7	3	9	1	7	
+
+	5798f700 T_Row: 0, B_Row: 8, L_Col: 4, R_Col: 4 valid!
+	5718e700 T_Row: 0, B_Row: 8, L_Col: 5, R_Col: 5 valid!
+	5698d700 T_Row: 0, B_Row: 8, L_Col: 6, R_Col: 6 valid!
+	58190700 T_Row: 0, B_Row: 8, L_Col: 3, R_Col: 3 valid!
+	5618c700 T_Row: 0, B_Row: 8, L_Col: 7, R_Col: 7 valid!
+	5598b700 T_Row: 0, B_Row: 8, L_Col: 8, R_Col: 8 invalid!
+	5518a700 T_Row: 0, B_Row: 0, L_Col: 0, R_Col: 8 valid!
+	54989700 T_Row: 1, B_Row: 1, L_Col: 0, R_Col: 8 valid!
+	54188700 T_Row: 2, B_Row: 2, L_Col: 0, R_Col: 8 valid!
+	53987700 T_Row: 3, B_Row: 3, L_Col: 0, R_Col: 8 valid!
+	58991700 T_Row: 0, B_Row: 8, L_Col: 2, R_Col: 2 valid!
+	53186700 T_Row: 4, B_Row: 4, L_Col: 0, R_Col: 8 valid!
+	52985700 T_Row: 5, B_Row: 5, L_Col: 0, R_Col: 8 valid!
+	52184700 T_Row: 6, B_Row: 6, L_Col: 0, R_Col: 8 valid!
+	51983700 T_Row: 7, B_Row: 7, L_Col: 0, R_Col: 8 valid!
+	51182700 T_Row: 8, B_Row: 8, L_Col: 0, R_Col: 8 invalid!
+	50981700 T_Row: 0, B_Row: 3, L_Col: 3, R_Col: 0 valid!
+	50180700 T_Row: 0, B_Row: 3, L_Col: 6, R_Col: 3 valid!
+	4f97f700 T_Row: 0, B_Row: 3, L_Col: 9, R_Col: 6 valid!
+	4f17e700 T_Row: 3, B_Row: 6, L_Col: 3, R_Col: 0 valid!
+	4e97d700 T_Row: 3, B_Row: 6, L_Col: 6, R_Col: 3 valid!
+	59192700 T_Row: 0, B_Row: 8, L_Col: 1, R_Col: 1 valid!
+	4e17c700 T_Row: 3, B_Row: 6, L_Col: 9, R_Col: 6 valid!
+	4d97b700 T_Row: 6, B_Row: 9, L_Col: 3, R_Col: 0 valid!
+	4d17a700 T_Row: 6, B_Row: 9, L_Col: 6, R_Col: 3 valid!
+	4c979700 T_Row: 6, B_Row: 9, L_Col: 9, R_Col: 6 invalid!
+	59993700 T_Row: 0, B_Row: 8, L_Col: 0, R_Col: 0 valid!
+
+	RESULTS:
+
+	Column:  <59993700> is valid.
+	Row: <5518a700> is valid.
+	Grid: <50981700> is valid.
+
+	Column:  <59192700> is valid.
+	Row: <54989700> is valid.
+	Grid: <50180700> is valid.
+
+	Column:  <58991700> is valid.
+	Row: <54188700> is valid.
+	Grid: <4f97f700> is valid.
+
+	Column:  <58190700> is valid.
+	Row: <53987700> is valid.
+	Grid: <4f17e700> is valid.
+
+	Column:  <5798f700> is valid.
+	Row: <53186700> is valid.
+	Grid: <4e97d700> is valid.
+
+	Column:  <5718e700> is valid.
+	Row: <52985700> is valid.
+	Grid: <4e17c700> is valid.
+
+	Column:  <5698d700> is valid.
+	Row: <52184700> is valid.
+	Grid: <4d97b700> is valid.
+
+	Column:  <5618c700> is valid.
+	Row: <51983700> is valid.
+	Grid: <4d17a700> is valid.
+
+	Column: <5598b700> is invalid.
+	Row: <51182700> is invalid.
+	Grid: <4c979700> is invalid.
+
+	Sudoku puzzle solution is invalid!

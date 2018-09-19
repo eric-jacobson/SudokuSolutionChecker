@@ -22,14 +22,13 @@
 typedef int bool;
 
 /* Global data structures, shared by all threads */
-char sudokuPuzzle[9][9];  /* Matrix to store sudoku puzzle data */
-int valid[NUM_CHILD_THREADS] = {0};
-int columns[9];
+int sudokuPuzzle[9][9];  /* Matrix to store sudoku puzzle data */
+bool columns[9];
 int tid_columns[9];
-int rows[9];
-bool tid_rows[9];
+bool rows[9];
+int tid_rows[9];
 bool subgrids[9];
-bool tid_subgrids[9];
+int tid_subgrids[9];
 
 /*  Structure to represent the index (row and column) range of the elements in the puzzle */
 typedef struct{
@@ -38,11 +37,6 @@ typedef struct{
 	int leftColumn;
 	int rightColumn;
 } parameters;
-/*
-void *checkColumn(void *);
-void *checkRow(void *);
-void *checkSubgrid(void *);
-*/
 
 /* Validate a column */
 void *checkColumn(void* param)
@@ -52,6 +46,11 @@ void *checkColumn(void* param)
     int row = params->topRow;
     int column = params->rightColumn;
 
+    int tRow = params->topRow;
+    int bRow = params->bottomRow;
+    int lCol = params->leftColumn;
+    int rCol = params->rightColumn;
+
 	if (row != 0 || column > 8)
 	{
         fprintf(stderr, "Invalid row or column for column validation. Row: %d, Column: %d\n", row, column);
@@ -59,24 +58,27 @@ void *checkColumn(void* param)
     }
 
 	self = pthread_self();
-    int validColumns[9] = {0};
+    int validColumns[9];
     int i;
 
     for (i = 0; i < 9; i++) 
 	{
         int num = sudokuPuzzle[i][column];
-        if (num < 1 || num > 9 || validColumns[num - 1] == 1) {
+        if (num < 1 || num > 9 || validColumns[num - 1] == 1) 
+        {
             tid_columns[column] = self;
             columns[column] = FALSE;
+            printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
             pthread_exit(NULL);
         } else {
             validColumns[num - 1] = 1;
+            
         }
     }
     
+    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_columns[column] = self;
-    columns[column] = TRUE;
-    valid[18 + column] = 1;
+    columns[column] = TRUE;    
     pthread_exit(NULL);
 }
 
@@ -87,6 +89,11 @@ void *checkRow(void* param)
     parameters *params = (parameters*) param;
     int row = params->topRow;
     int column = params->leftColumn;
+
+    int tRow = params->topRow;
+    int bRow = params->bottomRow;
+    int lCol = params->leftColumn;
+    int rCol = params->rightColumn;
     
     if (column != 0 || row > 8) {
         fprintf(stderr, "Invalid row or column for row validation. Row: %d, Column: %d\n", row, column);
@@ -94,24 +101,26 @@ void *checkRow(void* param)
     }
     
     self = pthread_self();
-    int validRows[9] = {0};
+    int validRows[9];
     int i;
 
     for (i = 0; i < 9; i++) 
 	{
         int num = sudokuPuzzle[row][i];
-        if (num < 1 || num > 9 || validRows[num - 1] == 1) {
+        if (num < 1 || num > 9 || validRows[num - 1] == 1) 
+        {
             tid_rows[row] = self;
             rows[row] = FALSE;
+            printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
             pthread_exit(NULL);
         } else {
             validRows[num - 1] = 1;
         }
     }
     
+    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_rows[row] = self;
     rows[row] = TRUE;
-    valid[9 + row] = 1;
     pthread_exit(NULL);
 }
 
@@ -122,13 +131,19 @@ void *checkSubgrid(void* param)
     parameters *params = (parameters*) param;
     int row = params->topRow;
     int column = params->rightColumn;
+
+    int tRow = params->topRow;
+    int bRow = params->bottomRow;
+    int lCol = params->leftColumn;
+    int rCol = params->rightColumn;
     
-    if (row > 6 || row % 3 != 0 || column > 6 || column % 3 != 0) {
+    if (row > 6 || row % 3 != 0 || column > 6 || column % 3 != 0) 
+    {
         fprintf(stderr, "Invalid row or column for subgrid validation. Row: %d, Column: %d\n", row, column);
         pthread_exit(NULL);
     }
     self = pthread_self();
-    int validGrid[9] = {0};
+    int validGrid[9];
     int i, j;
 
     for (i = row; i < row + 3; i++) 
@@ -136,9 +151,11 @@ void *checkSubgrid(void* param)
         for (j = column; j < column + 3; j++) 
 		{
             int num = sudokuPuzzle[i][j];
-            if (num < 1 || num > 9 || validGrid[num - 1] == 1) {
+            if (num < 1 || num > 9 || validGrid[num - 1] == 1) 
+            {
                 tid_subgrids[row + column / 3] = self;
                 subgrids[row + column / 3] = FALSE;
+                printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
                 pthread_exit(NULL);
             } else {
                 validGrid[num - 1] = 1;
@@ -146,9 +163,9 @@ void *checkSubgrid(void* param)
         }
     }
     
+    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_subgrids[row + column / 3] = self;
     subgrids[row + column / 3] = TRUE;
-    valid[row + column / 3] = 1;
     pthread_exit(NULL);
 }
 
@@ -161,7 +178,8 @@ int main()
 	/* Get sudoku puzzle solution data from a text file */
 	FILE *filePtr;
 	filePtr = fopen("SudokuPuzzle.txt", "r");
-	if(filePtr == NULL)	{
+	if(filePtr == NULL)	
+    {
 		printf("Error opening file for reading.");
 		system("exit");
 	}else { 
@@ -181,18 +199,21 @@ int main()
         {
             for(j = 0; j < 9; j++)
             {
-                int c;
-                if(fscanf(filePtr, " %d", &c) != 1){
+                int k;
+                if(fscanf(filePtr, " %d", &k) != 1)
+                {
                     printf("Error");
                 }else {
-                    sudokuPuzzle[i][j] = c;
+                    sudokuPuzzle[i][j] = k;
                 }
             }
         }
         fclose(filePtr);
         printf("\n");
-        for(i = 0; i < 9; i++){
-            for(j = 0; j < 9; j++){
+        for(i = 0; i < 9; i++)
+        {
+            for(j = 0; j < 9; j++)
+            {
                 printf("%d\t", sudokuPuzzle[i][j]);
             }
             printf("\n");
@@ -206,8 +227,8 @@ int main()
 		parameters *position = (parameters*) malloc(sizeof(parameters));
 		position -> topRow = 0;
         position -> bottomRow = 8;
-        position -> leftColumn = (i - 1);
-        position -> rightColumn = (i - 1);
+        position -> leftColumn = (i);
+        position -> rightColumn = (i);
 		pthread_create(&tid[threadIndex++], NULL, checkColumn, position);
     }
 
@@ -215,8 +236,8 @@ int main()
     for(i = 0; i < 9; i++)
     {
 		parameters *position = (parameters*) malloc(sizeof(parameters));
-        position -> topRow = (i - 1);
-        position -> bottomRow = (i - 1);
+        position -> topRow = (i);
+        position -> bottomRow = (i);
         position -> leftColumn = (0);
         position -> rightColumn = (8);
         pthread_create(&tid[threadIndex++], NULL, checkRow, position);
@@ -227,11 +248,13 @@ int main()
     {
 		for (j = 0; j < 9; j++) 
 		{
-            if (i%3 == 0 && j%3 == 0) 
+            if (i % 3 == 0 && j % 3 == 0) 
 			{
                 parameters *position = (parameters *) malloc(sizeof(parameters));
                 position->topRow = i;
+                position->bottomRow = i + 3;
                 position->rightColumn = j;
+                position->leftColumn = j + 3;
                 pthread_create(&tid[threadIndex++], NULL, checkSubgrid, position);
             }
         }
@@ -242,33 +265,38 @@ int main()
         pthread_join(tid[i], NULL);
     }
 
-	printf("//---------------Validating---------------//\n\n");
+    /* Output results */
+    printf("\n\tRESULTS:\n\n");
 
 	int valid = TRUE;
     
 	for (i = 0; i < 9; i++) 
 	{
-        if (columns[i] == TRUE) {
-            printf("\tColumn: %x valid.\n", tid_columns[i]);
+        if (columns[i] == TRUE) 
+        {
+            printf("\tColumn:  <%x> is valid.\n", tid_columns[i]);
         }else {
             valid = FALSE;
-            printf("\tColumn: %x is invalid.\n", tid_columns[i]);
+            printf("\tColumn: <%x> is invalid.\n", tid_columns[i]);
         }
-        if (rows[i] == TRUE) {
-            printf("\tRow: %x valid.\n", tid_rows[i]);
+        if (rows[i] == TRUE) 
+        {
+            printf("\tRow: <%x> is valid.\n", tid_rows[i]);
         }else {
             valid = FALSE;
-            printf("\tRow: %x invalid.\n", tid_rows[i]);
+            printf("\tRow: <%x> is invalid.\n", tid_rows[i]);
         }
-        if (subgrids[i] == TRUE) {
-            printf("\tGrid: % valid.\n\n", tid_subgrids[i]);
+        if (subgrids[i] == TRUE) 
+        {
+            printf("\tGrid: <%x> is valid.\n\n", tid_subgrids[i]);
         }else {
             valid = FALSE;
-            printf("\tGrid: %x invalid.\n\n", tid_subgrids[i]);
+            printf("\tGrid: <%x> is invalid.\n\n", tid_subgrids[i]);
         }
     }
     
-    if (valid == TRUE) {
+    if (valid == TRUE) 
+    {
         printf("\tSudoku puzzle solution is valid!\n");
     }else {
         printf("\tSudoku puzzle solution is invalid!\n");
