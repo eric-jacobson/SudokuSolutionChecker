@@ -68,7 +68,7 @@ void *checkColumn(void* param)
         {
             tid_columns[column] = self;
             columns[column] = FALSE;
-            printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
+            printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
             pthread_exit(NULL);
         } else {
             validColumns[num - 1] = 1;
@@ -76,7 +76,7 @@ void *checkColumn(void* param)
         }
     }
     
-    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
+    printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_columns[column] = self;
     columns[column] = TRUE;    
     pthread_exit(NULL);
@@ -111,14 +111,14 @@ void *checkRow(void* param)
         {
             tid_rows[row] = self;
             rows[row] = FALSE;
-            printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
+            printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
             pthread_exit(NULL);
         } else {
             validRows[num - 1] = 1;
         }
     }
     
-    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
+    printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_rows[row] = self;
     rows[row] = TRUE;
     pthread_exit(NULL);
@@ -155,7 +155,7 @@ void *checkSubgrid(void* param)
             {
                 tid_subgrids[row + column / 3] = self;
                 subgrids[row + column / 3] = FALSE;
-                printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
+                printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d invalid!\n", self, tRow, bRow, lCol, rCol);
                 pthread_exit(NULL);
             } else {
                 validGrid[num - 1] = 1;
@@ -163,7 +163,7 @@ void *checkSubgrid(void* param)
         }
     }
     
-    printf("%x T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
+    printf("%lx T_Row: %d, B_Row: %d, L_Col: %d, R_Col: %d valid!\n", self, tRow, bRow, lCol, rCol);
     tid_subgrids[row + column / 3] = self;
     subgrids[row + column / 3] = TRUE;
     pthread_exit(NULL);
