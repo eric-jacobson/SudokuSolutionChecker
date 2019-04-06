@@ -184,16 +184,6 @@ int main()
 		system("exit");
 	}else { 
 		printf("Sudoku Puzzle Solution:\n");
-		/**
-         * Couldn't get this working with fgets(), using fscanf instead!
-         * 
-        while(!feof(filePtr)){
-	    	fgets(sudokuPuzzle, 9, filePtr);
-		    printf("%s", sudokuPuzzle);
-		}
-		printf("\n");
-		fclose(filePtr);
-        */
 
         for(i = 0; i < 9; i++)
         {
